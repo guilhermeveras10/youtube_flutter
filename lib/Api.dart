@@ -3,16 +3,20 @@ import 'dart:convert';
 
 import 'package:youtube_flutter/model/Video.dart';
 
-
 const CHAVE_YOUTUBE_API = "AIzaSyD1pk2AFjHx9eds_j8HceR6XT8_bFxlqjw";
-const ID_CANAL = "UC5ByFaspF1QNZ3RjWutu6Dg";
+const ID_CANAL = "UCVHFbqXqoYvEWM1Ddxl0QDg";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
-
 class Api {
-  pesquisar(String pesquisa) async {
-    http.Response response = await http.get(
-        "${URL_BASE}search?part=snippet&type=video&maxResults=20&order=date&key=$CHAVE_YOUTUBE_API&q=$pesquisa");
+  Future<List<Video>?> pesquisar(String pesquisa) async {
+    http.Response response = await http.get(URL_BASE +
+        "search"
+            "?part=snippet"
+            "&type=video"
+            "&maxResults=20"
+            "&order=date"
+            "&key=$CHAVE_YOUTUBE_API"
+            "&q=$pesquisa");
 
     if (response.statusCode == 200) {
       Map<String, dynamic> dadosJson = json.decode(response.body);
@@ -22,9 +26,8 @@ class Api {
         //return Video.converterJson(map);
       }).toList();
 
-      for (var video in videos) {
-        print("resultado: ${video.titulo}");
-      }
+      return videos;
+
       //print("Resultado: " + videos.toString() );
 
       /*
