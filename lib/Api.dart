@@ -16,6 +16,7 @@ class Api {
             "&maxResults=20"
             "&order=date"
             "&key=$CHAVE_YOUTUBE_API"
+            // "&channelId=$ID_CANAL"
             "&q=$pesquisa");
 
     if (response.statusCode == 200) {
@@ -35,7 +36,6 @@ class Api {
         print("Resultado: " + video.toString() );
       }*/
       //print("resultado: " + dadosJson["items"].toString() );
-
     } else {}
   }
 }
